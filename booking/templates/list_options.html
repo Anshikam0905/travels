@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+ {% block main %}
+ <div class="row">
+ <div class="col-md-3"></div>
+<div class="col-md-6 ">
+<div class="card mt-5" >
+  <div class="text-center m-5">
+    <h2>Available Travel Options</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Date & Time</th>
+                <th>Price</th>
+                <th>Available Seats</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for option in options %}
+            <tr>
+                <td>{{ option.travel_id }}</td>
+                <td>{{ option.travel_type }}</td>
+                <td>{{ option.source }}</td>
+                <td>{{ option.destination }}</td>
+                <td>{{ option.date_time }}</td>
+                <td>₹{{ option.price }}</td>
+                <td>{{ option.available_seats }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+
+       </div>
+</div>
+</div>
+</div>
+  {% endblock %}

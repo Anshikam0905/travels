@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="card mt-5">
+            <div class="text-center m-5">
+                <h2>Create Travel Option</h2>
+                <h3>Dashboard:</h3>
+
+                <div class="row overflow-auto">
+                    <div class="col-sm-12 p-5 table-responsive">
+                        <table class="table table-bordered" id="example">
+                            <thead>
+                                <tr class="table">
+                                    <th>Name</th>
+                                    <td>{{ uname }}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ email }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Form for creating travel options -->
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <div class="mt-4">
+                        <a href="{% url 'book_travel' %}" class="btn btn-primary">Booking</a>
+                        <a href="{% url 'list_travel_options' %}" class="btn btn-primary">Available Travels</a>
+                        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+                        <a href="{% url 'update_profile' %}" class="btn btn-warning">Update Profile</a>
+                        
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <div class="">    <a href="{% url 'create_travel_option' %}" class="btn btn-primary">Create Travel Option</a>
+</div>
+</div>
+{% endblock %}

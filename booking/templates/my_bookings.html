@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+ {% block main %}
+ <div class="row">
+ <div class="col-md-3"></div>
+<div class="col-md-6 ">
+<div class="card mt-5" >
+  <div class="text-center m-5">
+    <h2 class="mb-4"> My Bookings</h2>
+
+    {% if bookings %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Travel Option</th>
+                    <th>Seats</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Booking Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.travel_option }}</td>
+                        <td>{{ booking.number_of_seats }}</td>
+                        <td>₹{{ booking.total_price }}</td>
+                        <td>{{ booking.status }}</td>
+                        <td>{{ booking.booking_date }}</td>
+                        <td>
+                            {% if booking.id and booking.status != "Cancelled" %}
+                                <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Cancel</a>
+                            {% else %}
+                                <span class="text-muted">Cancelled</span>
+                            {% endif %}
+                            
+                            {% if booking.id %}
+                                <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger btn-sm">Cancel</a>
+                            {% else %}
+                                  <span class="text-muted">Error</span>
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No bookings found.</p>
+    {% endif %}
+       </div>
+</div>
+</div>
+</div>
+  
+{% endblock %}
+
